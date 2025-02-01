@@ -1,0 +1,6 @@
+.cards-container {
+    max-height: calc(100vh - 120px); /* Adjust 120px for header and footer combined height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 20px; /* Space between the last card and the footer */
+    margin-bottom: 20px;
+  }

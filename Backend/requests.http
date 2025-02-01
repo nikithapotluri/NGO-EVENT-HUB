@@ -1,0 +1,87 @@
+### User API
+get http://localhost:4000/user-api/users
+
+
+###
+get http://localhost:4000/user-api/users/org
+
+
+###
+post http://localhost:4000/user-api/register
+Content-Type: application/json
+
+{
+    "username": "nikitha_1710",
+    "password": "nikitha1710", 
+    "type": "personal",
+    "details": {
+    "name": "Potluri Nikitha",
+    "mobileNumber": "9123456789",
+    "email": "nikitha@gmail.com"
+    }
+}
+
+
+###
+post http://localhost:4000/user-api/login
+Content-Type: application/json
+
+{
+    
+    "username":"org1",
+    "password":"1234567890"
+   
+}
+
+
+###
+put http://localhost:4000/user-api/update
+Content-Type: application/json
+
+{
+    "username": "org",
+    "password": "1234567890", 
+    "type": "organization",
+    "details": {
+    "name": "Orga NGO",
+    "mobileNumber": "9123456789",
+    "email": "org@gmail.com"
+    },
+    "organizationDetails": {
+      "place": "New Delhi",
+      "description": "This is a good organization." 
+    }
+}
+
+
+
+
+
+### Events API
+get http://localhost:4000/event-api/events
+
+
+###
+get http://localhost:4000/event-api/events/organization/org
+
+
+###
+post http://localhost:4000/event-api/create
+Content-Type: application/json
+
+{
+  "username": {
+    //userdetails
+  },
+  "name": "Charity 2025",
+  "description": "Join us for a charity run to support underprivileged children.",
+  "location": "Central Park, CityName 1",
+  "date": "1th January 2025",
+  "timings": "10:00 AM - 1:00 PM",
+  "registerLink": "http://charityrun20251.com/register",
+  "paymentLink": "123-456-7890"
+}
+
+
+###
+delete http://localhost:4000/event-api/delete/67812dd0ad93e4ed818aba3d
