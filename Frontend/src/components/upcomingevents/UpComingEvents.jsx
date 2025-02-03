@@ -153,7 +153,8 @@ function UpComingEvents() {
                     Register
                   </a>
 
-                  <Button variant="info" className="mt-2" onClick={() => setSelectedOrganization(event.userDetails)}>
+                  <Button variant="info" className="mt-2" onClick={() => {setSelectedOrganization(event.userDetails); setShowModal(true);}}>
+                    {console.log(event.userDetails)}
                     About NGO
                   </Button>
 
