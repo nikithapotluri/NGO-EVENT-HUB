@@ -1,13 +1,29 @@
-/* Register.css */
-
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.register-container{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Ensures full-screen background */
+    min-height: 100%;
+    width: 100%;
+   
+  margin-top: -100px;
+}
 /* General page styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+
+
   /* Heading styling */
   .display-3 {
     font-size: 2.5rem;
@@ -15,7 +31,7 @@ body {
     margin-top: 2rem;
     color: #343a40;
   }
-  
+ 
   /* Centering content */
   .row {
     display: flex;
@@ -24,21 +40,21 @@ body {
     height: 100vh;
     margin: 0;
   }
-  
+ 
   /* Form container styling */
   form {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
+ 
   .bg-light {
     background-color: #ffffff !important;
   }
-  
+ 
   .p-3 {
     padding: 1.5rem;
   }
-  
+ 
   /* Input field styling */
   input.form-control,
   textarea.form-control {
@@ -48,19 +64,19 @@ body {
     padding: 0.5rem;
     font-size: 1rem;
   }
-  
+ 
   textarea.form-control {
     height: auto;
     resize: none;
   }
-  
+ 
   input.form-control:focus,
   textarea.form-control:focus {
     outline: none;
     border-color: #28a745;
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.25);
   }
-  
+ 
   /* Label styling */
   .form-label {
     font-size: 1rem;
@@ -68,14 +84,14 @@ body {
     margin-bottom: 0.5rem;
     color: #495057;
   }
-  
+ 
   /* Error message styling */
   .text-danger {
     font-size: 0.9rem;
     margin-top: 0.5rem;
     margin-bottom: 0;
   }
-  
+ 
   /* Button styling */
   .btn {
     font-size: 1rem;
@@ -84,42 +100,55 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
   }
-  
+ 
   .btn-primary {
     background-color: #007bff;
     color: #ffffff;
     border: none;
   }
-  
+ 
   .btn-primary:hover {
     background-color: #0056b3;
   }
-  
+ 
   .btn-secondary {
     background-color: #6c757d;
     color: #ffffff;
     border: none;
   }
-  
+  .registration-heading {
+    color: #ffffff; /* Adjust the color if needed */
+    font-weight: bold;
+    font-family: 'Poppins'; /* Change this to your preferred font */
+    font-size: 2rem; /* Adjust size as needed */
+   
+    letter-spacing: 1.5px; /* Optional: Adds spacing between letters */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: Adds a shadow effect */
+}
+
+
+
+
+ 
   .btn-secondary:hover {
     background-color: #545b62;
   }
-  
+ 
   .btn-success {
     background-color: #28a745;
     color: #ffffff;
     border: none;
   }
-  
+ 
   .btn-success:hover {
     background-color: #218838;
   }
-  
+ 
   /* Spacing between buttons */
   .me-3 {
     margin-right: 1rem;
   }
-  
+ 
   /* Section headers */
   h5 {
     font-size: 1.2rem;
@@ -127,25 +156,57 @@ body {
     color: #343a40;
     margin-top: 2rem;
   }
-  
+   .form-container {
+    width: 80%; /* Adjust width to make the form smaller */
+    max-width: 600px; /* Limit max width */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin: auto; /* Centers the form horizontally */
+}
+
+
+/* Center the form vertically and horizontally */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the wrapper takes full screen height */
+}
+
+
+  .form-container {
+    padding: 1rem;
+  }
+ 
+ 
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .display-3 {
       font-size: 2rem;
     }
-  
+ 
     input.form-control,
     textarea.form-control {
       font-size: 0.9rem;
     }
-  
+ 
     .btn {
       font-size: 0.9rem;
       padding: 0.4rem 0.8rem;
     }
-  
+ 
     h5 {
       font-size: 1rem;
     }
   }
-  
+  @media (max-width: 768px) {
+    .register-container {
+      padding: 20px;
+    }
+    .form-container {
+      width: 100%;
+      padding: 15px;
+    }
+  }

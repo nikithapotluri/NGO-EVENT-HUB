@@ -3,17 +3,25 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { FaSignInAlt, FaUserCircle } from "react-icons/fa";
-import { IoIosInformationCircleOutline } from "react-icons/io";
+import { IoIosInformationCircle } from "react-icons/io";
+
+
 import { IoHome } from "react-icons/io5";
 import { Dropdown } from "react-bootstrap"; // Import Bootstrap Dropdown
 import { userLoginContext } from "../../contexts/userLoginContext";
+import { useLocation } from "react-router-dom";
+import { MdEventAvailable } from "react-icons/md";
+
 
 function Header() {
   const { loginUser, logoutUser, userLoginStatus, currentUser } = useContext(userLoginContext);
+  const location = useLocation();
+const isSpecialPage = location.pathname === "/someSpecialPage";
+
 
   return (
-    <div className="d-flex flex-wrap justify-content-around header">
-      <h1>Myshop</h1>
+    <div className={`d-flex flex-wrap justify-content-around header ${isSpecialPage ? 'special-page' : ''}`}>
+      <h2>NGO Event Hub</h2>
       <ul className="nav fs-5 p-3">
         <li className="nav-item">
           <Link to="home" className="nav-link">
@@ -22,19 +30,22 @@ function Header() {
           </Link>
         </li>
 
+
         <li className="nav-item">
           <Link to="about" className="nav-link">
-            <IoIosInformationCircleOutline className="fs-3 text-warning" />
+            <IoIosInformationCircle className="fs-3 text-warning" />
             About Us
           </Link>
         </li>
 
+
         <li className="nav-item">
           <Link to="upcomingevents" className="nav-link">
-            <IoIosInformationCircleOutline className="fs-3 text-warning" />
+            <MdEventAvailable className="fs-3 text-warning" />
             Events
           </Link>
         </li>
+
 
         {userLoginStatus ? (
           // Dropdown for logged-in users
@@ -44,12 +55,14 @@ function Header() {
               {currentUser.userDetails.username}
             </Dropdown.Toggle>
 
+
             <Dropdown.Menu>
               {currentUser.type === "organization" && (
                 <>
                 <Dropdown.Item as={Link} to="createevents">
                   Create Events
                 </Dropdown.Item>
+
 
                 <Dropdown.Item as={Link} to="yourevents">
                     Your Events
@@ -74,5 +87,6 @@ function Header() {
     </div>
   );
 }
+
 
 export default Header;

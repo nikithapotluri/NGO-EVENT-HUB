@@ -1,7 +1,60 @@
 .header{
     background-color: var(--medium-dark);
     align-items:center;
+    background-color: #0b4481;  /* Change this to any color you prefer */
+    color: white; /* Text color */
+    padding: 15px 0;
+   
 }
 .header h1{
     color:var(--dark-pink)
 }
+
+
+
+
+/* Navbar link styles */
+.nav-link {
+  color: white !important;  /* Ensures navbar links are white */
+}
+
+
+.nav-link:hover {
+  color: #ffcc00 !important;  /* Change to any color you want for hover effect */
+}
+
+
+/* Icon color */
+.text-warning {
+  color: white !important; /* Ensure icon color is white */
+}
+
+
+.nav-item .nav-link {
+  margin: 0 15px;
+}
+
+
+/* Customize dropdown menu background and text color */
+.dropdown-menu {
+  background-color: #0056b3;  /* Same as the header background */
+}
+
+
+.dropdown-item {
+  color: white;
+}
+
+
+.dropdown-item:hover {
+  background-color: #003d7a;  /* Darker blue when hovered */
+  color: white;
+}
+
+
+/* If you want a different color for a specific page */
+.header.special-page {
+  background-color: #f1c40f; /* Example of another color for a special page */
+}
+
+

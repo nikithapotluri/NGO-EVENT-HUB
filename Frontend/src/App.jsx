@@ -5,6 +5,7 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import About from "./components/about/About";
 
+
 import {Navigate} from 'react-router-dom'
 import CreateEvents from "./components/createevents/CreateEvents";
 import UpComingEvents from "./components/upcomingevents/UpComingEvents";
@@ -13,6 +14,7 @@ import RoutingError from "./components/RoutingError";
 import UserLoginStore from "./contexts/UserLoginStore";
 import UserProfile from "./components/user-profile/User-Profile";
 import YourEvents from "./components/yourevents/YourEvents";
+
 
 function App() {
   const browserRouter = createBrowserRouter([
@@ -25,6 +27,7 @@ function App() {
           path: "home",
           element: <Home />,
         },
+
 
         {
           path: "/",
@@ -66,11 +69,13 @@ function App() {
     },
   ]);
 
+
   return (
     <div className="main">
       <RouterProvider router={browserRouter} />
     </div>
   );
 }
+
 
 export default App;

@@ -4,6 +4,7 @@ import { Table, Button, Spinner, Form, Modal } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 
+
 function YourEvents() {
   const { currentUser, userLoginStatus } = useContext(userLoginContext);
   const [events, setEvents] = useState([]);
@@ -13,9 +14,11 @@ function YourEvents() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+
   // Modal state
   const [showModal, setShowModal] = useState(false);
   const [eventToDelete, setEventToDelete] = useState(null);
+
 
   // Fetch events of the logged-in organization
   useEffect(() => {
@@ -23,6 +26,7 @@ function YourEvents() {
       fetchEvents();
     }
   }, [currentUser, userLoginStatus]);
+
 
   const fetchEvents = async () => {
     try {
@@ -42,11 +46,13 @@ function YourEvents() {
     }
   };
 
+
   // Show the confirmation modal before deleting
   const confirmDelete = (eventId) => {
     setEventToDelete(eventId);
     setShowModal(true);
   };
+
 
   // Delete an event
   const handleDelete = async () => {
@@ -59,6 +65,7 @@ function YourEvents() {
         throw new Error("Failed to delete event.");
       }
 
+
       toast.success("Event Deleted Successfully!");
       setEvents(events.filter((event) => event._id !== eventToDelete));
       setFilteredEvents(filteredEvents.filter((event) => event._id !== eventToDelete));
@@ -70,6 +77,7 @@ function YourEvents() {
     }
   };
 
+
   // Filter events based on date range
   const filterEvents = () => {
     if (!startDate || !endDate) {
@@ -80,6 +88,7 @@ function YourEvents() {
     setFilteredEvents(filtered);
   };
 
+
   if (!userLoginStatus) {
     return (
       <div className="d-flex justify-content-center vh-100">
@@ -87,6 +96,7 @@ function YourEvents() {
       </div>
     );
   }
+
 
   if (currentUser.userDetails.type !== "organization") {
     return (
@@ -96,9 +106,11 @@ function YourEvents() {
     );
   }
 
+
   return (
     <div className="container mt-4">
       <h2 className="text-center mb-4">Your Events</h2>
+
 
       <div className="d-flex justify-content-center mb-3">
         <Form.Group className="me-3">
@@ -113,6 +125,7 @@ function YourEvents() {
           Filter
         </Button>
       </div>
+
 
       {loading ? (
         <div className="text-center">
@@ -176,6 +189,7 @@ function YourEvents() {
         </div>
       )}
 
+
       {/* Confirmation Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
@@ -190,9 +204,11 @@ function YourEvents() {
         </Modal.Footer>
       </Modal>
 
+
       <ToastContainer />
     </div>
   );
 }
+
 
 export default YourEvents;

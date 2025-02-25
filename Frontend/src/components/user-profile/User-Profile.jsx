@@ -5,26 +5,31 @@ import { userLoginContext } from "../../contexts/userLoginContext";
 import personalPic from "../../assets/personal.png";
 import orgPic from "../../assets/organization.jpg";
 
+
 import {RiDeleteBin6Fill} from "react-icons/ri"
 import { ImCloudUpload } from "react-icons/im";
 import Axios from 'axios'
 
+
 import { ToastContainer, toast } from "react-toastify";
+
 
 function UserProfile() {
   const { currentUser, userLoginStatus } = useContext(userLoginContext);
   let [cloudinaryImages, setCloudinaryImages] = useState([]);
   console.log(cloudinaryImages)
 
+
   function onInputChange(files) {
     const formData = new FormData();
     formData.append('file', files[0]);
     formData.append('upload_preset', 'ngo-event-hub-pics');
     formData.append('folder', 'ngo-organization-logos');
-  
+ 
     // Directly construct the userInfo object
     const userInfo = { username: currentUser.userDetails.username };
     formData.append('context', `user_info=${JSON.stringify(userInfo)}`);
+
 
     Axios.post('https://api.cloudinary.com/v1_1/dzbnppmzg/image/upload', formData)
       .then((response) => {
@@ -37,11 +42,12 @@ function UserProfile() {
       });
   }
 
+
   async function getImage() {
     try {
       const response = await fetch('http://localhost:4000/image-api/get-images');
       const result = await response.json();
-  
+ 
       if (result.data) {
         // Map the data to extract necessary details
         const formattedImages = result.data.map((image) => {
@@ -55,14 +61,14 @@ function UserProfile() {
               console.error('Failed to parse user_info:', error);
             }
           }
-  
+ 
           return {
             url: image.url, // Image URL
             user: username, // Extracted username
             public_id:image.public_id
           };
         });
-  
+ 
         console.log(formattedImages); // Debug: Verify the formatted data
         setCloudinaryImages(formattedImages); // Update state with formatted data
       }
@@ -72,16 +78,18 @@ function UserProfile() {
   }
 
 
+
+
   async function deleteImage(publicId) {
     try {
       const response = await fetch(
         `http://localhost:4000/image-api/delete-image/${encodeURIComponent(publicId)}`,
         { method: 'DELETE' }
       );
-  
+ 
       console.log("Public ID:", publicId); // Debug log
       const result = await response.json();
-  
+ 
       if (response.ok) {
         toast.success(result.message);
         getImage(); // Refresh the image list
@@ -96,9 +104,12 @@ function UserProfile() {
   }
 
 
+
+
   useEffect(()=>{
     getImage();
   },[userLoginStatus])
+
 
   return (
     <div>
@@ -109,6 +120,7 @@ function UserProfile() {
               {/* Profile Picture */}
               <div>
                 {cloudinaryImages.find((ele) => ele.user === currentUser.userDetails.username) ? (
+
 
                   <div>
                   <img
@@ -125,12 +137,14 @@ function UserProfile() {
                     }}
                   />
 
-            
+
+           
               <RiDeleteBin6Fill
                         onClick={() => deleteImage(cloudinaryImages.find((ele) => ele.user === currentUser.userDetails.username)?.public_id)}
                         style={{ cursor: 'pointer', borderRadius: '5px', padding: '2px', marginRight: '-20px', marginTop: '-50px'}}
                         className="text-danger mb-3 fs-2"
                       />
+
 
                   </div>
                 ) : currentUser.userDetails.type === "personal" ? (
@@ -146,23 +160,25 @@ function UserProfile() {
                     }}
                   />
 
-              <label 
-             htmlFor="fileupload" 
-             className="a" 
+
+              <label
+             htmlFor="fileupload"
+             className="a"
              style={{ cursor: 'pointer' }}
               >
               <ImCloudUpload  style={{fontSize:'30px',marginLeft:'-30px',marginBottom:'-90px'}} className='text-warning'/>
               </label>
-              <input 
+              <input
                   id="fileupload"
                   accept="image/*"
                   type="file"
                   onChange={(event) => onInputChange(event.target.files)}
-                  style={{ display: 'none' }} 
+                  style={{ display: 'none' }}
               />
                   </div>
-                  
+                 
                 ) : (
+
 
                   <div>
                   <img
@@ -176,19 +192,20 @@ function UserProfile() {
                     }}
                   />
 
-                <label 
-             htmlFor="fileupload" 
-             className="a" 
+
+                <label
+             htmlFor="fileupload"
+             className="a"
              style={{ cursor: 'pointer' }}
               >
               <ImCloudUpload  style={{fontSize:'30px',marginLeft:'-30px',marginBottom:'-90px'}} className='text-warning'/>
               </label>
-              <input 
+              <input
                   id="fileupload"
                   accept="image/*"
                   type="file"
                   onChange={(event) => onInputChange(event.target.files)}
-                  style={{ display: 'none' }} 
+                  style={{ display: 'none' }}
               />
                   </div>
                 )}
@@ -196,7 +213,13 @@ function UserProfile() {
 
 
 
+
+
+
+
               </div>
+
+
 
 
               {/* User Details */}
@@ -258,4 +281,7 @@ function UserProfile() {
   );
 }
 
+
 export default UserProfile;
+
+

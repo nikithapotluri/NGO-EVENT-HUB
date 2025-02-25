@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { FaMapMarkerAlt, FaCalendarAlt, FaClock } from "react-icons/fa";
 import { Button, Card, Spinner, Form, Modal } from "react-bootstrap";
 import { userLoginContext } from "../../contexts/userLoginContext";
+import './UpComingEvents.css'; // Ensure the CSS file is imported
+
 
 function UpComingEvents() {
   const [events, setEvents] = useState([]);
@@ -17,6 +19,7 @@ function UpComingEvents() {
   const [selectedOrganization, setSelectedOrganization] = useState(null);
   const { userLoginStatus } = useContext(userLoginContext);
 
+
   useEffect(() => {
     async function fetchEventDetails() {
       try {
@@ -26,14 +29,17 @@ function UpComingEvents() {
         }
         const data = await response.json();
 
+
         const today = new Date();
         today.setHours(0, 0, 0, 0);
+
 
         const upcomingEvents = data.filter(event => {
           const eventDate = new Date(event.date);
           eventDate.setHours(0, 0, 0, 0);
           return eventDate >= today;
         });
+
 
         setEvents(upcomingEvents);
         setFilteredEvents(upcomingEvents);
@@ -44,14 +50,17 @@ function UpComingEvents() {
       }
     }
 
+
     fetchEventDetails();
   }, []);
+
 
   // Filter function
   const handleFilterSubmit = (e) => {
     e.preventDefault();
     const start = startDate ? new Date(startDate) : null;
     const end = endDate ? new Date(endDate) : null;
+
 
     const filtered = events.filter(event => {
       const eventDate = new Date(event.date);
@@ -60,11 +69,14 @@ function UpComingEvents() {
       const isMatchingUsername = username ? event.userDetails?.username?.toLowerCase().includes(username.toLowerCase()) : true;
       const isMatchingOrganization = organizationName ? event.userDetails?.organization?.name?.toLowerCase().includes(organizationName.toLowerCase()) : true;
 
+
       return isWithinDateRange && isMatchingLocation && isMatchingUsername && isMatchingOrganization;
     });
 
+
     setFilteredEvents(filtered);
   };
+
 
   if (loading) {
     return (
@@ -75,6 +87,7 @@ function UpComingEvents() {
     );
   }
 
+
   if (error) {
     return (
       <div className="text-center mt-5 text-danger">
@@ -84,9 +97,11 @@ function UpComingEvents() {
     );
   }
 
+
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-4">Find Events Here!</h2>
+
 
       {/* Filter Form */}
       <Form onSubmit={handleFilterSubmit} className="d-flex flex-wrap gap-3 justify-content-center mb-4">
@@ -115,64 +130,75 @@ function UpComingEvents() {
         </Button>
       </Form>
 
+
       {/* Display Filtered Events */}
-      {filteredEvents.length > 0 ? (
-        <div className="row">
-          {filteredEvents.map((event, index) => (
-            <div className="col-md-4 mb-4" key={event.id || index}>
-              <Card className="shadow">
-                <Card.Body>
-                  <Card.Title className="mb-3">
-                    <strong>{event.eventName}</strong>
-                  </Card.Title>
-                  <Card.Text>{event.description}</Card.Text>
+      <div className="cards-container">
+        {filteredEvents.length > 0 ? (
+          <div className="row">
+            {filteredEvents.map((event, index) => (
+              <div className="col-md-4 mb-4" key={event.id || index}>
+                <Card className="shadow">
+                  <Card.Body>
+                    <Card.Title className="mb-3">
+                      <strong>{event.eventName}</strong>
+                    </Card.Title>
+                    <Card.Text>{event.description}</Card.Text>
 
-                  {/* Event Details */}
-                  <ul className="list-unstyled mb-3">
-                    <li className="d-flex align-items-center">
-                      <FaMapMarkerAlt className="me-2 text-primary" />
-                      <strong>Location:</strong> {event.location}
-                    </li>
-                    <li className="d-flex align-items-center">
-                      <FaCalendarAlt className="me-2 text-success" />
-                      <strong>Date:</strong> {event.date}
-                    </li>
-                    <li className="d-flex align-items-center">
-                      <FaClock className="me-2 text-warning" />
-                      <strong>Time:</strong> {event.time}
-                    </li>
-                    <li className="d-flex align-items-center">
-                      <strong>Username:</strong> {event.userDetails?.username || "N/A"}
-                    </li>
-                    <li className="d-flex align-items-center">
-                      <strong>Organization:</strong> {event.userDetails?.organization?.name || "N/A"}
-                    </li>
-                  </ul>
 
-                  <a href={event.registerLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                    Register
-                  </a>
+                    {/* Event Details */}
+                    <ul className="list-unstyled mb-3">
+                      <li className="d-flex align-items-center">
+                        <FaMapMarkerAlt className="me-2 text-primary" />
+                        <strong>Location:</strong> {event.location}
+                      </li>
+                      <li className="d-flex align-items-center">
+                        <FaCalendarAlt className="me-2 text-success" />
+                        <strong>Date:</strong> {event.date}
+                      </li>
+                      <li className="d-flex align-items-center">
+                        <FaClock className="me-2 text-warning" />
+                        <strong>Time:</strong> {event.time}
+                      </li>
+                      <li className="d-flex align-items-center">
+                        <strong>Username:</strong> {event.userDetails?.username || "N/A"}
+                      </li>
+                      <li className="d-flex align-items-center">
+                        <strong>Organization:</strong> {event.userDetails?.organization?.name || "N/A"}
+                      </li>
+                    </ul>
 
-                  <Button variant="info" className="mt-2" onClick={() => {setSelectedOrganization(event.userDetails); setShowModal(true);}}>
-                    {console.log(event.userDetails)}
-                    About NGO
-                  </Button>
 
-                  {event.paymentLink && (
-                    <a href={event.paymentLink} target="_blank" rel="noopener noreferrer" className="btn btn-success ms-2">
-                      Pay Now
-                    </a>
-                  )}
-                </Card.Body>
-              </Card>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="text-center mt-4">
-          <p>No events found.</p>
-        </div>
-      )}
+                    <div className="btn-container">
+  <a href={event.registerLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+    Register
+  </a>
+
+
+  <Button variant="info"  onClick={() => {setSelectedOrganization(event.userDetails); setShowModal(true);}}>
+    About NGO
+  </Button>
+
+
+  {event.paymentLink && (
+    <a href={event.paymentLink} target="_blank" rel="noopener noreferrer" className="btn btn-success ms-2">
+      Pay Now
+    </a>
+  )}
+</div>
+
+
+                  </Card.Body>
+                </Card>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center mt-4">
+            <p>No events found.</p>
+          </div>
+        )}
+      </div>
+
 
       {/* Modal for displaying organization details */}
       {selectedOrganization && (
@@ -195,4 +221,7 @@ function UpComingEvents() {
   );
 }
 
+
 export default UpComingEvents;
+
+
