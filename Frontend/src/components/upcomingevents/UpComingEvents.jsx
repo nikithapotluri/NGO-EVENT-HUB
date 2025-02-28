@@ -159,13 +159,7 @@ function UpComingEvents() {
                         <FaClock className="me-2 text-warning" />
                         <strong>Time:</strong> {event.time}
                       </li>
-                      <li className="d-flex align-items-center">
-                        <strong>Username:</strong> {event.userDetails?.username || "N/A"}
-                      </li>
-                      <li className="d-flex align-items-center">
-                        <strong>Organization:</strong> {event.userDetails?.organization?.name || "N/A"}
-                      </li>
-                    </ul>
+                                          </ul>
 
 
                     <div className="btn-container">
@@ -207,10 +201,13 @@ function UpComingEvents() {
             <Modal.Title>About {selectedOrganization.organization?.name || "NGO"}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+          <p><strong>Name:</strong> {selectedOrganization?.details?.name || "Not available"}</p>
+            <p><strong>Username:</strong> {selectedOrganization?.username || "Not available"}</p>
             <p><strong>Mobile Number:</strong> {selectedOrganization.details?.mobileNumber || "Not available"}</p>
             <p><strong>Email:</strong> {selectedOrganization.details?.email || "Not available"}</p>
             <p><strong>Description:</strong> {selectedOrganization.organization?.description || "Not available"}</p>
             <p><strong>Location:</strong> {selectedOrganization.organization?.place || "Not available"}</p>
+            
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>

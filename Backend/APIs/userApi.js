@@ -128,6 +128,21 @@ userApp.put(
   );
   
   
-
+  userApp.get(
+    "/user-counts",
+    expressAsyncHandler(async (req, res) => {
+      const usersCollection = req.app.get("usersCollection");
+  
+      const personalCount = await usersCollection.countDocuments({ type: "personal" });
+      const organizationCount = await usersCollection.countDocuments({ type: "organization" });
+  
+      res.send({
+        message: "User counts retrieved successfully",
+        personalCount,
+        organizationCount,
+      });
+    })
+  );
+  
 
 module.exports = userApp;
