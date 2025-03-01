@@ -51,8 +51,8 @@ function Register() {
 
   return (
     <div className="register-container">
-      <p className="display-5 text-center  registration-heading">
-        {/*type === "Personal" ? "User Registration" : type === "Professional" ? "Organization Registration" : ""*/}
+      <p className="display-5 text-center text-black registration-heading">
+        {type === "Personal" ? "User Registration" : type === "Professional" ? "Organization Registration" : ""}
       </p>
 
 
