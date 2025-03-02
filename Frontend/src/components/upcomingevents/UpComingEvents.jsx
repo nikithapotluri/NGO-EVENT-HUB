@@ -23,7 +23,7 @@ function UpComingEvents() {
   useEffect(() => {
     async function fetchEventDetails() {
       try {
-        const response = await fetch("https://ngo-event-hub-backend.vercel.app/event-api/events");
+        const response = await fetch("https://ngo-event-hub-hksp.vercel.app/event-api/events");
         if (!response.ok) {
           throw new Error(`Failed to fetch event details: ${response.statusText}`);
         }

@@ -12,7 +12,7 @@ function UserLoginStore({ children }) {
   async function loginUser(userCred) {
     try {
       let res = await fetch(
-        `https://ngo-event-hub-backend.vercel.app/user-api/login`,
+        `https://ngo-event-hub-hksp.vercel.app/user-api/login`,
         {
           method: "POST",
           headers: { "Content-type": "application/json" ,},

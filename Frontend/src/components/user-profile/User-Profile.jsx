@@ -45,7 +45,7 @@ function UserProfile() {
 
   async function getImage() {
     try {
-      const response = await fetch('https://ngo-event-hub-backend.vercel.app/image-api/get-images');
+      const response = await fetch('https://ngo-event-hub-hksp.vercel.app/image-api/get-images');
       const result = await response.json();
  
       if (result.data) {
@@ -83,7 +83,7 @@ function UserProfile() {
   async function deleteImage(publicId) {
     try {
       const response = await fetch(
-        `https://ngo-event-hub-backend.vercel.app/image-api/delete-image/${encodeURIComponent(publicId)}`,
+        `https://ngo-event-hub-hksp.vercel.app/image-api/delete-image/${encodeURIComponent(publicId)}`,
         { method: 'DELETE' }
       );
  

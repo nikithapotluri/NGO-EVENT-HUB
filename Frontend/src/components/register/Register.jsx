@@ -20,7 +20,7 @@ function Register() {
   // Handle user registration
   async function onUserRegister(newUser) {
     try {
-      const res = await fetch("https://ngo-event-hub-backend.vercel.app/user-api/register", {
+      const res = await fetch("https://ngo-event-hub-hksp.vercel.app/user-api/register", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newUser),
