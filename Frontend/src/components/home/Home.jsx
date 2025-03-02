@@ -23,7 +23,7 @@ export default function Home() {
     }
 
     // Fetch user counts dynamically
-    fetch('http://localhost:4000/user-api/user-counts')
+    fetch('https://ngo-event-hub-backend.vercel.app/user-api/user-counts')
       .then((res) => res.json())
       .then((data) => {
         setCounts({
