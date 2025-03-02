@@ -7,7 +7,7 @@ const app = exp();
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://ngo-event-hub.vercel.app",
+    origin: "https://ngo-event-hub.vercel.app"
   })
 );
 
