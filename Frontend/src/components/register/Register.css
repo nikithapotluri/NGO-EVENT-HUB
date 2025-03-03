@@ -3,14 +3,12 @@ html, body {
   margin: 0;
   padding: 0;
 }
-.register-container{
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh; /* Ensures full-screen background */
-    min-height: 100%;
-    width: 100%;
-   
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
 }
 /* General page styling */
 body {
@@ -125,9 +123,6 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: Adds a shadow effect */
 }
 
-
-
-
  
   .btn-secondary:hover {
     background-color: #545b62;
@@ -179,6 +174,41 @@ body {
     padding: 1rem;
   }
  
+  .form-wrapper {
+    width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .scrollable-form {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  
+  .scrollable-form::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollable-form::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .scrollable-form::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.9em;
+  }
+  
+  .btn-primary {
+    width: 100%;
+  }
  
   /* Responsive adjustments */
   @media (max-width: 768px) {
