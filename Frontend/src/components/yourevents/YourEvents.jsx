@@ -31,7 +31,7 @@ function YourEvents() {
   const fetchEvents = async () => {
     try {
       const response = await fetch(
-        `https://ngo-event-hub-hksp.vercel.app/event-api/events/organization/${currentUser.userDetails.username}`
+        `https://ngo-event-hub-bend.vercel.app/event-api/events/organization/${currentUser.userDetails.username}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch events.");
@@ -58,7 +58,7 @@ function YourEvents() {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `https://ngo-event-hub-hksp.vercel.app/event-api/delete/${eventToDelete}`,
+        `https://ngo-event-hub-bend.vercel.app/event-api/delete/${eventToDelete}`,
         { method: "DELETE" }
       );
       if (!response.ok) {

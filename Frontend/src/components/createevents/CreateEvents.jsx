@@ -23,7 +23,7 @@ const CreateEvents = () => {
       userDetails:currentUser.userDetails
     }
 
-    const res = await fetch("https://ngo-event-hub-hksp.vercel.app/event-api/create", {
+    const res = await fetch("https://ngo-event-hub-bend.vercel.app/event-api/create", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(eventData),

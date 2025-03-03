@@ -1,13 +1,13 @@
 ### User API
-get https://ngo-event-hub-hksp.vercel.app/user-api/users
+get https://ngo-event-hub-bend.vercel.app/user-api/users
 
 
 ###
-get https://ngo-event-hub-hksp.vercel.app/user-api/users/org
+get https://ngo-event-hub-bend.vercel.app/user-api/users/org
 
 
 ###
-post https://ngo-event-hub-hksp.vercel.app/user-api/register
+post https://ngo-event-hub-bend.vercel.app/user-api/register
 Content-Type: application/json
 
 {
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 
 ###
-post https://ngo-event-hub-hksp.vercel.app/user-api/login
+post https://ngo-event-hub-bend.vercel.app/user-api/login
 Content-Type: application/json
 
 {
@@ -35,7 +35,7 @@ Content-Type: application/json
 
 
 ###
-put https://ngo-event-hub-hksp.vercel.app/user-api/update
+put https://ngo-event-hub-bend.vercel.app/user-api/update
 Content-Type: application/json
 
 {
@@ -54,20 +54,20 @@ Content-Type: application/json
 }
 
 ###
-get https://ngo-event-hub-hksp.vercel.app/user-api/user-counts
+get https://ngo-event-hub-bend.vercel.app/user-api/user-counts
 
 
 
 ### Events API
-get https://ngo-event-hub-hksp.vercel.app/event-api/events
+get https://ngo-event-hub-bend.vercel.app/event-api/events
 
 
 ###
-get https://ngo-event-hub-hksp.vercel.app/event-api/events/organization/org
+get https://ngo-event-hub-bend.vercel.app/event-api/events/organization/org
 
 
 ###
-post https://ngo-event-hub-hksp.vercel.app/event-api/create
+post https://ngo-event-hub-bend.vercel.app/event-api/create
 Content-Type: application/json
 
 {
@@ -85,4 +85,4 @@ Content-Type: application/json
 
 
 ###
-delete https://ngo-event-hub-hksp.vercel.app/event-api/delete/67812dd0ad93e4ed818aba3d
+delete https://ngo-event-hub-bend.vercel.app/event-api/delete/67812dd0ad93e4ed818aba3d
