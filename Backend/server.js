@@ -2,16 +2,18 @@
 const exp = require("express");
 const app = exp();
 
-
 // Enable CORS
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://ngo-event-hub.vercel.app"
+    origin: "https://ngo-event-hub.vercel.app",
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization",
+    credentials: true,
   })
 );
 
-app.use(exp.json())
+app.use(exp.json());
 
 // Import MongoClient
 const { MongoClient } = require("mongodb");
@@ -29,7 +31,7 @@ mClient
     // Connect to a database
     const fsddb = connectionObj.db("ngo-event-hub");
 
-    // Connect to a collection
+    // Connect to collections
     const usersCollection = fsddb.collection("users");
     const eventsCollection = fsddb.collection("events");
 
@@ -38,37 +40,34 @@ mClient
     app.set("eventsCollection", eventsCollection);
 
     console.log("DB connection success");
+
+    // Import userApp & eventApp express object AFTER DB is connected
+    const userApp = require("./APIs/userApi");
+    const eventApp = require("./APIs/eventApi");
+    const uploadRoute = require("./APIs/upload");
+
+    // Forward requests starting with /user-api to userApp
+    app.use("/user-api", userApp);
+    app.use("/event-api", eventApp);
+    app.use("/image-api", uploadRoute);
+
+    // Handle invalid paths
+    app.use("*", (req, res) => {
+      res.status(404).send({ message: `Invalid path` });
+    });
+
+    // Error handling middleware
+    app.use((err, req, res, next) => {
+      console.error(err.stack);
+      res.status(500).send({ message: "Error occurred", errorMessage: err.message });
+    });
+
+    // Start the server ONLY after DB connection
+    const PORT = 4000;
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
   })
-  .catch((err) => console.log("Error in DB connection", err));
-
-// Import userApp & eventApp express object
-const userApp = require("./APIs/userApi");
-const eventApp = require("./APIs/eventApi");
-const uploadRoute = require("./APIs/upload")
-
-// Forward requests starting with /user-api to userApp
-app.use("/user-api", userApp);
-
-// Forward requests starting with /event-api to eventApp
-app.use("/event-api", eventApp);
-
-// Forward requests starting with /image-api to uploadRoute
-app.use("/image-api", uploadRoute);
-
-// Handle invalid paths
-app.use("*", (req, res, next) => {
-  console.log(req.path);
-  res.status(404).send({ message: `Invalid path` });
-});
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send({ message: "Error occurred", errorMessage: err.message });
-});
-
-// Start the server
-const PORT = 4000;
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+  .catch((err) => {
+    console.log("Error in DB connection", err);
+  });
