@@ -136,22 +136,22 @@ function Register() {
 
 
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="form-control"
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: { value: 6, message: "Password must be at least 6 characters" }
-                  })}
-                />
-                {errors.name && (
-                  <p className="text-danger">*Name is required</p>
-                )}
+                  <label htmlFor="name" className="form-label">
+                    Name
+                  </label>
+                  <input
+                      type="text"
+                        id="name"
+                      className="form-control"
+                      {...register("name", {
+                        required: "Name is required",
+                      })}
+                  />
+                  {errors.name && (
+                    <p className="text-danger">*Name is required</p>
+                  )}
               </div>
+
              
               <div className="mb-3">
                 <label htmlFor="mobileNumber" className="form-label">
