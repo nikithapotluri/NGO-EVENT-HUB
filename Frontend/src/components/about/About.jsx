@@ -20,13 +20,13 @@ function About() {
         },
         {
             name: "Rayala Baby Akshitha",
-            linkedin: "https://www.linkedin.com/in/nikithapotluri/",
-            github: "https://github.com/nikithapotluri",
+            linkedin: "https://www.linkedin.com/in/baby-akshitha-rayala/",
+            github: "https://github.com/akshitharayala",
         },
         {
             name: "Vemulapalli Gnaneswari",
-            linkedin: "https://www.linkedin.com/in/nikithapotluri/",
-            github: "https://github.com/nikithapotluri",
+            linkedin: "https://www.linkedin.com/in/vemulapalli-gnaneswari-0a99272b0/",
+            github: "https://github.com/gnaneswari15",
         }
     ];
 
